@@ -357,3 +357,142 @@ secoes.forEach((secao) => observadorSecoes.observe(secao));
 */
 
 aoRolar();
+
+
+
+/* =========================================================
+   LIGHTBOX (MODAL DE IMAGEM)
+
+   Permite ampliar imagens ao clicar nelas.
+========================================================= */
+
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxCaption = document.getElementById("lightboxCaption");
+const lightboxCounter = document.getElementById("lightboxCounter");
+const lightboxClose = document.querySelector(".lightbox-close");
+const lightboxPrev = document.querySelector(".lightbox-prev");
+const lightboxNext = document.querySelector(".lightbox-next");
+
+/* Array com todas as imagens que têm lightbox */
+const imagensLightbox = Array.from(
+    document.querySelectorAll("[data-lightbox-src]")
+);
+
+let indiceAtual = 0;
+
+
+/*
+    Abre o lightbox com a imagem selecionada.
+*/
+function abrirLightbox(indice) {
+
+    indiceAtual = indice;
+
+    const item = imagensLightbox[indice];
+
+    lightboxImg.src = item.getAttribute("data-lightbox-src");
+
+    lightboxImg.alt = item.getAttribute("data-lightbox-alt");
+
+    lightboxCaption.textContent = item.getAttribute("data-lightbox-caption");
+
+    lightboxCounter.textContent = (indice + 1) + " / " + imagensLightbox.length;
+
+    lightbox.classList.add("aberto");
+
+    lightbox.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+
+}
+
+
+/*
+    Fecha o lightbox.
+*/
+function fecharLightbox() {
+
+    lightbox.classList.remove("aberto");
+
+    lightbox.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+
+}
+
+
+/*
+    Navega para a imagem seguinte.
+*/
+function proximaImagem() {
+
+    indiceAtual = (indiceAtual + 1) % imagensLightbox.length;
+
+    abrirLightbox(indiceAtual);
+
+}
+
+
+/*
+    Navega para a imagem anterior.
+*/
+function imagemAnterior() {
+
+    indiceAtual = (indiceAtual - 1 + imagensLightbox.length) % imagensLightbox.length;
+
+    abrirLightbox(indiceAtual);
+
+}
+
+
+/* Eventos: clique nas imagens */
+imagensLightbox.forEach((item, indice) => {
+
+    item.addEventListener("click", () => {
+
+        abrirLightbox(indice);
+
+    });
+
+});
+
+
+/* Eventos: botões e overlay */
+lightboxClose.addEventListener("click", fecharLightbox);
+lightboxPrev.addEventListener("click", imagemAnterior);
+lightboxNext.addEventListener("click", proximaImagem);
+
+
+/* Fechar ao clicar no overlay escuro */
+lightbox.querySelector(".lightbox-overlay").addEventListener("click", fecharLightbox);
+
+
+/* Navegação por teclado */
+document.addEventListener("keydown", (evento) => {
+
+    if (!lightbox.classList.contains("aberto")) return;
+
+    switch (evento.key) {
+
+        case "Escape":
+
+            fecharLightbox();
+
+            break;
+
+        case "ArrowRight":
+
+            proximaImagem();
+
+            break;
+
+        case "ArrowLeft":
+
+            imagemAnterior();
+
+            break;
+
+    }
+
+});

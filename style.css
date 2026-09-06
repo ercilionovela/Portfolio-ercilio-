@@ -39,23 +39,29 @@ a {
 /* =========================================================
    CORES PRINCIPAIS
 
-   Se quiseres mudar as cores do site,
-   podes alterar aqui.
+   Paleta profissional inspirada em cartografia.
+   Azul-marinho profundo, âmbar terroso, e neutros.
 ========================================================= */
 
 :root {
 
-    --cor-principal: #d97706;
+    --cor-principal: #b47a3d;
 
-    --cor-escura: #171717;
+    --cor-secundaria: #1e3a5f;
 
-    --cor-fundo: #f5f5f2;
+    --cor-escura: #1a1f2e;
 
-    --cor-cinza: #666666;
+    --cor-fundo: #faf9f7;
 
-    --cor-clara: #deded8;
+    --cor-cinza: #5a6270;
+
+    --cor-clara: #e8e4de;
 
     --cor-branca: #ffffff;
+
+    --cor-navy: #0f2844;
+
+    --cor-terracota: #c4885b;
 
 }
 
@@ -77,11 +83,7 @@ a {
 
     z-index: 1000;
 
-    /*
-    COR DA BARRA SUPERIOR
-    */
-
-    background: #12355B;
+    background: var(--cor-navy);
 
     backdrop-filter: blur(10px);
 
@@ -245,15 +247,15 @@ a {
 
     margin: auto;
 
-    padding: 150px 30px 80px;
+    padding: 120px 30px 80px;
 
     display: grid;
 
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.2fr 0.8fr;
 
     align-items: center;
 
-    gap: 70px;
+    gap: 60px;
 }
 
 
@@ -264,23 +266,49 @@ a {
 
     color: var(--cor-principal);
 
-    font-size: 12px;
+    font-size: 11px;
 
     font-weight: 700;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
-    margin-bottom: 15px;
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.section-label::before {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 24px;
+
+    height: 2px;
+
+    background: var(--cor-principal);
+
 }
 
 
 .hero h1 {
 
-    font-size: clamp(45px, 6vw, 76px);
+    font-size: clamp(42px, 5.5vw, 72px);
 
-    line-height: 1.05;
+    line-height: 1.02;
 
-    letter-spacing: -4px;
+    letter-spacing: -2px;
+
+    font-weight: 800;
+
+    font-family: "Playfair Display", Georgia, serif;
 }
 
 
@@ -478,7 +506,9 @@ a {
 
     line-height: 1.1;
 
-    letter-spacing: -2px;
+    letter-spacing: -1px;
+
+    font-family: "Playfair Display", Georgia, serif;
 }
 
 
@@ -529,11 +559,13 @@ a {
 
 .about-text h3 {
 
-    font-size: 32px;
+    font-size: 28px;
 
-    line-height: 1.2;
+    line-height: 1.3;
 
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+
+    font-family: "Playfair Display", Georgia, serif;
 }
 
 
@@ -554,7 +586,7 @@ a {
 
 .projects-section {
 
-    background: var(--cor-escura);
+    background: var(--cor-navy);
 
     color: white;
 
@@ -586,15 +618,17 @@ a {
 
 .project-card {
 
-    background: #242424;
+    background: rgba(255, 255, 255, 0.06);
 
     overflow: hidden;
 
-    border-radius: 6px;
+    border-radius: 12px;
 
     transition:
         transform 0.4s ease,
         box-shadow 0.4s ease;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 
@@ -718,9 +752,13 @@ a {
 
 .skill-card {
 
-    padding: 30px;
+    padding: 32px;
 
-    border-top: 2px solid var(--cor-escura);
+    border: 1px solid var(--cor-clara);
+
+    border-radius: 12px;
+
+    background: var(--cor-branca);
 
     transition: 0.3s ease;
 }
@@ -732,13 +770,37 @@ a {
 }
 
 
-.skill-card span {
+.skill-icon {
 
-    color: var(--cor-principal);
+    width: 56px;
 
-    font-size: 13px;
+    height: 56px;
 
-    font-weight: 700;
+    background: linear-gradient(135deg, var(--cor-secundaria), var(--cor-navy));
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 20px;
+
+    color: white;
+}
+
+.skill-number {
+
+    color: var(--cor-cinza);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+
 }
 
 
@@ -777,9 +839,11 @@ a {
 
     font-size: 55px;
 
-    letter-spacing: -3px;
+    letter-spacing: -2px;
 
     margin-bottom: 20px;
+
+    font-family: "Playfair Display", Georgia, serif;
 }
 
 
@@ -811,14 +875,23 @@ a {
     align-items: center;
 
     justify-content: space-between;
+
+    border-top: 1px solid var(--cor-clara);
 }
 
 
 .footer p {
 
-    color: #777;
+    color: var(--cor-cinza);
 
     font-size: 13px;
+}
+
+
+.footer .logo {
+
+    color: var(--cor-escura);
+
 }
 
 
@@ -837,9 +910,9 @@ a {
 
     width: 0;
 
-    height: 4px;
+    height: 3px;
 
-    background: linear-gradient(90deg, var(--cor-principal), #f59e0b);
+    background: linear-gradient(90deg, var(--cor-secundaria), var(--cor-principal));
 
     z-index: 2000;
 
@@ -868,7 +941,7 @@ a {
 
     border-radius: 50%;
 
-    background: var(--cor-principal);
+    background: var(--cor-navy);
 
     color: white;
 
@@ -878,7 +951,13 @@ a {
 
     cursor: pointer;
 
-    box-shadow: 0 8px 20px rgba(217, 119, 6, 0.35);
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow: 0 8px 20px rgba(15, 40, 68, 0.35);
 
     opacity: 0;
 
@@ -932,6 +1011,177 @@ button:focus-visible {
 
 
 /* =========================================================
+   IMAGE OVERLAY + ZOOM ICON
+
+   Mostra ícone de lupa ao passar o rato nas imagens.
+========================================================= */
+
+.project-image {
+    position: relative;
+    cursor: pointer;
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 50%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.project-card:hover .image-overlay,
+.project-image:hover .image-overlay {
+    opacity: 1;
+}
+
+.zoom-icon {
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--cor-escura);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .zoom-icon,
+.project-image:hover .zoom-icon {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   LIGHTBOX (MODAL DE IMAGEM)
+
+   Permite ampliar imagens ao clicar nelas.
+========================================================= */
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.lightbox.aberto {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+.lightbox-img {
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.35s ease;
+}
+
+.lightbox.aberto .lightbox-img {
+    transform: scale(1);
+}
+
+.lightbox-caption {
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.lightbox-counter {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(4px);
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+    left: -70px;
+}
+
+.lightbox-next {
+    right: -70px;
+}
+
+
+/* =========================================================
    ANIMAÇÃO INICIAL
 
    Os elementos começam invisíveis.
@@ -958,11 +1208,7 @@ button:focus-visible {
     opacity: 1;
 
     transform: translateY(0);
-}
-
-
-
-/* =========================================================
+}/* =========================================================
    RESPONSIVIDADE — TABLET (MENU HAMBÚRGUER)
 ========================================================= */
 
@@ -973,6 +1219,7 @@ button:focus-visible {
     .hamburger {
 
         display: flex;
+
     }
 
 
@@ -997,7 +1244,7 @@ button:focus-visible {
 
         padding: 0 35px;
 
-        background: #0f2c4d;
+        background: var(--cor-navy);
 
         box-shadow: -15px 0 40px rgba(0, 0, 0, 0.3);
 
@@ -1006,6 +1253,7 @@ button:focus-visible {
         transition: transform 0.35s ease;
 
         z-index: 1050;
+
     }
 
 
@@ -1013,6 +1261,7 @@ button:focus-visible {
     .menu.aberto {
 
         transform: translateX(0);
+
     }
 
 
@@ -1021,6 +1270,7 @@ button:focus-visible {
         font-size: 19px;
 
         font-weight: 600;
+
     }
 
 
@@ -1028,6 +1278,7 @@ button:focus-visible {
     body.menu-aberto {
 
         overflow: hidden;
+
     }
 
 
@@ -1041,6 +1292,17 @@ button:focus-visible {
     .hero-image {
 
         margin-top: 30px;
+
+    }
+
+
+    .image-frame {
+
+        width: 100%;
+
+        max-width: 450px;
+
+        margin: 0 auto;
 
     }
 
@@ -1071,6 +1333,9 @@ button:focus-visible {
 
 /* =========================================================
    RESPONSIVIDADE — TELEMÓVEL
+
+   Layout otimizado para ecrãs pequenos.
+   Prioridade para visualização em telemóvel.
 ========================================================= */
 
 @media (max-width: 600px) {
@@ -1078,42 +1343,78 @@ button:focus-visible {
 
     .navbar {
 
-        height: 70px;
+        height: 64px;
 
-        padding: 0 20px;
+        padding: 0 16px;
 
     }
 
 
+    .logo {
+
+        font-size: 24px;
+
+    }
+
+
+    /* Hero optimizado para telemóvel */
     .hero {
 
-        padding: 110px 20px 60px;
+        padding: 90px 20px 50px;
+
+        min-height: auto;
+
+        grid-template-columns: 1fr;
+
+        gap: 32px;
+
+        background: linear-gradient(180deg, var(--cor-fundo) 0%, var(--cor-clara) 100%);
+
+    }
+
+
+    .hero-image {
+
+        margin-top: 0;
+
+        width: 100%;
+
+    }
+
+
+    .section-label {
+
+        font-size: 11px;
+
+        letter-spacing: 1.5px;
 
     }
 
 
     .hero h1 {
 
-        font-size: 42px;
+        font-size: clamp(32px, 8vw, 46px);
 
-        letter-spacing: -1px;
+        letter-spacing: -1.5px;
 
     }
 
 
     .hero-description {
 
-        font-size: 16px;
+        font-size: 15px;
+
+        line-height: 1.7;
 
     }
 
 
-    /* Botões empilhados, ocupando toda a largura */
+    /* Botões maiores e empilhados para toque fácil */
     .hero-buttons {
 
         flex-direction: column;
 
-        align-items: stretch;
+        gap: 12px;
 
     }
 
@@ -1122,6 +1423,10 @@ button:focus-visible {
 
         text-align: center;
 
+        padding: 16px 24px;
+
+        font-size: 15px;
+
     }
 
 
@@ -1129,81 +1434,222 @@ button:focus-visible {
 
         width: 100%;
 
-        height: 380px;
+        height: 280px;
+
+        box-shadow: 8px 8px 0 var(--cor-clara);
+
+        border-radius: 12px;
+
+        animation: none;
 
     }
 
 
+    /* Seções com menos espaço */
     .section {
 
-        padding: 80px 20px;
+        padding: 70px 16px;
 
     }
 
 
     .section-heading {
 
-        margin-bottom: 40px;
+        margin-bottom: 32px;
 
     }
 
 
     .section-heading h2 {
 
-        font-size: 34px;
+        font-size: clamp(28px, 7vw, 36px);
+
+        letter-spacing: -1px;
+
+        font-family: "Playfair Display", Georgia, serif;
+
+    }
+
+
+    /* Sobre */
+    .about-container {
+
+        gap: 40px;
 
     }
 
 
     .about-image {
 
-        height: 300px;
+        height: 240px;
+
+        border-radius: 8px;
 
     }
 
 
     .about-text h3 {
 
-        font-size: 26px;
+        font-size: 24px;
 
     }
 
 
+    .about-text p {
+
+        font-size: 15px;
+
+    }
+
+
+    /* Projetos em cartão único */
     .project-grid {
 
         grid-template-columns: 1fr;
 
+        gap: 20px;
+
     }
 
 
+    .project-card {
+
+        border-radius: 12px;
+
+    }
+
+
+    .project-image {
+
+        height: 220px;
+
+    }
+
+
+    .project-info {
+
+        padding: 20px;
+
+    }
+
+
+    /* Competências em cartão único */
     .skills-grid {
 
         grid-template-columns: 1fr;
 
+        gap: 12px;
+
     }
 
 
+    .skill-card {
+
+        padding: 24px 20px;
+
+        border-radius: 12px;
+
+        background: white;
+
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+    }
+
+
+    .skill-icon {
+
+        width: 48px;
+
+        height: 48px;
+
+    }
+
+
+    /* Contacto */
     .contact-section {
 
-        padding: 100px 20px;
+        padding: 80px 16px;
 
     }
 
 
     .contact-section h2 {
 
-        font-size: 38px;
+        font-size: clamp(32px, 8vw, 44px);
+
+        letter-spacing: -2px;
 
     }
 
 
+    .contact-section > p:not(.section-label) {
+
+        font-size: 15px;
+
+    }
+
+
+    /* Rodapé */
     .footer {
 
         flex-direction: column;
 
-        gap: 15px;
+        gap: 12px;
 
         text-align: center;
+
+        padding: 28px 16px;
+
+    }
+
+    .footer .logo {
+
+        font-size: 22px;
+
+    }
+
+
+    /* Lightbox — botões maiores no telemóvel */
+    .lightbox-close {
+
+        top: -45px;
+
+        right: -10px;
+
+        font-size: 32px;
+
+    }
+
+
+    .lightbox-prev {
+
+        left: 8px;
+
+        width: 44px;
+
+        height: 44px;
+
+        font-size: 28px;
+
+    }
+
+
+    .lightbox-next {
+
+        right: 8px;
+
+        width: 44px;
+
+        height: 44px;
+
+        font-size: 28px;
+
+    }
+
+
+    .lightbox-caption {
+
+        font-size: 14px;
 
     }
 

@@ -52,6 +52,24 @@ const observador = new IntersectionObserver(
 
 
                 /*
+                    Quando a animação de entrada termina,
+                    removemos o atraso em cascata.
+
+                    Assim, os toques e hovers nos cartões
+                    respondem na hora, sem espera.
+                */
+
+                const atrasoEntrada =
+                    parseFloat(entrada.target.style.transitionDelay) || 0;
+
+                setTimeout(() => {
+
+                    entrada.target.style.transitionDelay = "";
+
+                }, atrasoEntrada + 850);
+
+
+                /*
                     Depois de aparecer,
                     deixamos de observar o elemento.
                 */
@@ -113,9 +131,16 @@ elementos.forEach((elemento) => {
         /*
             Cada cartão espera 120ms extra
             em relação ao anterior.
+
+            Limitamos o atraso máximo a 360ms:
+            no telemóvel (uma coluna) os últimos
+            cartões não ficam assim mais de um
+            terço de segundo à espera.
         */
 
-        elemento.style.transitionDelay = (posicao * 120) + "ms";
+        const atraso = Math.min(posicao * 120, 360);
+
+        elemento.style.transitionDelay = atraso + "ms";
 
     }
 
@@ -466,6 +491,35 @@ lightboxNext.addEventListener("click", proximaImagem);
 
 /* Fechar ao clicar no overlay escuro */
 lightbox.querySelector(".lightbox-overlay").addEventListener("click", fecharLightbox);
+
+
+/*
+    Os links "Ver projeto" dentro de cada cartão
+    também abrem o lightbox com a imagem respetiva.
+*/
+document.querySelectorAll(".project-link").forEach((link) => {
+
+    link.addEventListener("click", (evento) => {
+
+        evento.preventDefault();
+
+        const cartao = link.closest(".project-card");
+
+        if (!cartao) return;
+
+        const imagem = cartao.querySelector(".project-image");
+
+        const indice = imagensLightbox.indexOf(imagem);
+
+        if (indice !== -1) {
+
+            abrirLightbox(indice);
+
+        }
+
+    });
+
+});
 
 
 /* Navegação por teclado */

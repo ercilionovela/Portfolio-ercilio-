@@ -480,6 +480,30 @@ a {
 
 
 
+/* Animação de entrada usada no telemóvel */
+
+@keyframes subir-entrada {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+
 /* =========================================================
    SEÇÕES
 ========================================================= */
@@ -854,6 +878,86 @@ a {
     margin: 0 auto 30px;
 
     color: var(--cor-cinza);
+}
+
+
+/* Contém os botões de contacto lado a lado */
+.contact-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-top: 30px;
+}
+
+
+/* Botões sociais (WhatsApp e LinkedIn) */
+.social-btn {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 14px 25px;
+
+    border-radius: 5px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: white;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+
+.social-btn svg {
+
+    flex-shrink: 0;
+}
+
+
+.whatsapp-btn {
+
+    background: #25d366;
+}
+
+
+.whatsapp-btn:hover {
+
+    background: #1ebe5b;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+}
+
+
+.linkedin-btn {
+
+    background: #0a66c2;
+}
+
+
+.linkedin-btn:hover {
+
+    background: #084d92;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 8px 20px rgba(10, 102, 194, 0.35);
 }
 
 
@@ -1265,6 +1369,50 @@ button:focus-visible {
     }
 
 
+    /* =====================================================
+       ANIMAÇÃO DO MENU EM CASCATA (telemóvel/tablet)
+
+       Cada link desliza para dentro um pouco
+       depois do anterior, quando o menu abre.
+    ====================================================== */
+
+    /* Só escondemos os links se o JavaScript
+       estiver ativo (o menu precisa dele). */
+    .js .menu a {
+
+        opacity: 0;
+
+        transform: translateX(24px);
+
+        transition:
+            opacity 0.35s ease,
+            transform 0.35s ease,
+            color 0.3s;
+
+    }
+
+
+    .js .menu.aberto a {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+    }
+
+
+    /* Cada link espera um pouco mais que o anterior */
+    .js .menu.aberto li:nth-child(1) a { transition-delay: 0.10s; }
+
+    .js .menu.aberto li:nth-child(2) a { transition-delay: 0.16s; }
+
+    .js .menu.aberto li:nth-child(3) a { transition-delay: 0.22s; }
+
+    .js .menu.aberto li:nth-child(4) a { transition-delay: 0.28s; }
+
+    .js .menu.aberto li:nth-child(5) a { transition-delay: 0.34s; }
+
+
     .menu a {
 
         font-size: 19px;
@@ -1440,7 +1588,59 @@ button:focus-visible {
 
         border-radius: 12px;
 
-        animation: none;
+        /* A imagem também flutua no telemóvel,
+           mas mais devagar para não distrair */
+
+        animation: floating 5s ease-in-out infinite;
+
+    }
+
+
+    /* =====================================================
+       ANIMAÇÕES DE ENTRADA (telemóvel)
+
+       O conteúdo do hero sobe suavemente,
+       um elemento de cada vez, ao abrir a página.
+    ====================================================== */
+
+    .hero-content > * {
+
+        animation: subir-entrada 0.7s ease backwards;
+
+    }
+
+
+    .hero-content > *:nth-child(1) {
+
+        animation-delay: 0.05s;
+
+    }
+
+
+    .hero-content > *:nth-child(2) {
+
+        animation-delay: 0.15s;
+
+    }
+
+
+    .hero-content > *:nth-child(3) {
+
+        animation-delay: 0.25s;
+
+    }
+
+
+    .hero-content > *:nth-child(4) {
+
+        animation-delay: 0.35s;
+
+    }
+
+
+    .hero-image {
+
+        animation: subir-entrada 0.8s ease 0.45s backwards;
 
     }
 
@@ -1589,6 +1789,24 @@ button:focus-visible {
     }
 
 
+    /* Botões de contacto empilhados no telemóvel */
+    .contact-actions {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .contact-actions .btn,
+    .contact-actions .social-btn {
+
+        width: 100%;
+
+    }
+
+
     /* Rodapé */
     .footer {
 
@@ -1650,6 +1868,89 @@ button:focus-visible {
     .lightbox-caption {
 
         font-size: 14px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   ANIMAÇÕES PARA ECRÃS DE TOQUE (TELEMÓVEL/TABLET)
+
+   No toque não existe "hover". Por isso:
+   - a dica "Ver detalhe" fica sempre visível;
+   - o feedback acontece ao TOCAR (estado :active).
+========================================================= */
+
+@media (hover: none) {
+
+
+    /* Mostra sempre a dica "Ver detalhe" nas imagens */
+    .image-overlay {
+
+        opacity: 1;
+
+        background: none;
+
+    }
+
+
+    .zoom-icon {
+
+        transform: translateY(0);
+
+        /* Pulsa ligeiramente para convidar ao toque */
+
+        animation: pulsar-dica 2.5s ease-in-out infinite;
+
+    }
+
+
+    /* Feedback ao tocar nos botões */
+
+    .btn:active,
+    .social-btn:active {
+
+        transform: scale(0.96);
+
+    }
+
+
+    /* Feedback ao tocar nos cartões */
+
+    .project-card:active,
+    .skill-card:active {
+
+        transform: scale(0.98);
+
+    }
+
+
+    .back-to-top:active {
+
+        transform: scale(0.88);
+
+    }
+
+}
+
+
+
+/* Pulsação suave da dica "Ver detalhe" */
+
+@keyframes pulsar-dica {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.06);
 
     }
 
